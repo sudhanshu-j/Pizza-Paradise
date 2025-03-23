@@ -1,0 +1,1332 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Montserrat:wght@100..900&display=swap");
+/* Importing Google Fonts 'Carter One' and 'Montserrat' */
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem; /* Header height set to 3.5 rem */
+
+  /*========== Colors ==========*/
+  /* Color mode HSL(hue, saturation, lightness) */
+  --first-color: hsl(353, 93%, 50%); /* Primary color */
+  --first-color-alt: hsl(353, 93%, 46%); /* Alternative primary color */
+  --first-color-dark: hsl(353, 50%, 15%); /* Dark version of primary color */
+  --title-color: hsl(353, 48%, 12%); /* Color for titles */
+  --text-color: hsl(353, 16%, 32%); /* Color for general text */
+  --text-color-light: hsl(353, 16%, 48%); /* Lighter text color */
+  --white-color: hsl(24, 86%, 90%); /* White color */
+  --body-color: hsl(24, 86%, 88%); /* Background color */
+  --container-color: hsl(24, 86%, 92%); /* Container background color */
+  --shadow-small-img: drop-shadow(
+    0 4px 16px hsla(353, 100%, 8%, 0.2)
+  ); /* Shadow effect for small images */
+  --shadow-big-img: drop-shadow(
+    0 8px 24px hsla(353, 100%, 8%, 0.2)
+  ); /* Shadow effect for big images */
+
+  /*========== Font and typography ==========*/
+  /* .5rem = 8px | 1rem = 16px ... */
+  --body-font: "Montserrat", sans-serif; /* Default font family for the body */
+  --second-font: "Carter One", system-ui; /* Font for headings and special text */
+  --biggest-font-size: 2.5rem; /* Font size for the biggest text */
+  --bigger-font-size: 1.5rem; /* Font size for bigger text */
+  --h1-font-size: 1.5rem; /* Font size for <h1> */
+  --h2-font-size: 1.25rem; /* Font size for <h2> */
+  --h3-font-size: 1rem; /* Font size for <h3> */
+  --normal-font-size: 0.938rem; /* Font size for normal text */
+  --small-font-size: 0.813rem; /* Font size for small text */
+  --smaller-font-size: 0.75rem; /* Font size for very small text */
+
+  /*========== Font weight ==========*/
+  --font-regular: 400; /* Regular font weight */
+  --font-medium: 500; /* Medium font weight */
+  --font-semi-bold: 600; /* Semi-bold font weight */
+
+  /*========== z index ==========*/
+  --z-tooltip: 10; /* Z-index for tooltips */
+  --z-fixed: 100; /* Z-index for fixed elements like header */
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+  :root {
+    --biggest-font-size: 4.25rem; /* Increased font size for larger screens */
+    --bigger-font-size: 2.5rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box; /* Ensure padding and border do not affect element's total width and height */
+  padding: 0; /* Reset padding */
+  margin: 0; /* Reset margin */
+}
+
+html {
+  scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+input,
+button,
+body {
+  font-family: var(
+    --body-font
+  ); /* Apply body font to input, button, and body */
+  font-size: var(--normal-font-size); /* Apply normal font size */
+}
+
+body {
+  background-color: var(--body-color); /* Set background color */
+  color: var(--text-color); /* Set text color */
+}
+
+input,
+button {
+  outline: none; /* Remove outline on input and button */
+  border: none; /* Remove border */
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--title-color); /* Set title color */
+  font-weight: var(--font-regular); /* Set font weight for headers */
+  font-family: var(--second-font); /* Set font for headers */
+  line-height: 120%; /* Set line height */
+}
+
+ul {
+  list-style: none; /* Remove default list styling */
+}
+
+a {
+  text-decoration: none; /* Remove default underline from links */
+}
+
+img {
+  display: block; /* Make images block elements */
+  max-width: 100%; /* Ensure images do not exceed container width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px; /* Set maximum width for container */
+  margin-inline: 1.5rem; /* Apply margin on left and right sides */
+}
+
+.grid {
+  display: grid; /* Set display to grid */
+  gap: 1.5rem; /* Set grid gap */
+}
+
+.section {
+  padding-block: 5rem 1rem; /* Apply vertical padding to sections */
+}
+
+.section-title {
+  text-align: center; /* Center-align section title */
+  font-size: var(--bigger-font-size); /* Apply bigger font size */
+  margin-bottom: 2rem; /* Add bottom margin */
+}
+
+.main {
+  overflow: hidden; /* Hide overflowing content */
+}
+
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: fixed; /* Fix header at the top */
+  width: 100%; /* Full width */
+  top: 0; /* Position it at the top */
+  left: 0; /* Align to the left */
+  background-color: var(--body-color); /* Set background color */
+  z-index: var(--z-fixed); /* Set z-index for proper stacking */
+  transition: box-shadow 0.5s; /* Smooth transition for box shadow */
+}
+
+.nav {
+  position: relative; /* Relative positioning for navigation */
+  height: var(--header-height); /* Set navigation height */
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space out navigation items */
+}
+
+.nav-logo {
+  display: inline-flex; /* Display logo inline with flex */
+  align-items: center; /* Align logo items vertically */
+  column-gap: 0.25rem; /* Set space between logo items */
+  font-family: var(--second-font); /* Use second font for logo text */
+  color: var(--title-color); /* Set logo text color */
+}
+
+.nav-logo img {
+  width: 24px; /* Set width of the logo image */
+}
+
+.nav-close,
+.nav-toggle {
+  display: flex; /* Use flex for close and toggle buttons */
+  font-size: 1.5rem; /* Set font size */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  color: var(--title-color); /* Set icon color */
+  transition: transform 0.5s; /* Smooth transition for transform */
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1150px) {
+  .nav-menu {
+    position: fixed; /* Fix navigation menu at the top */
+    top: -120%; /* Hide menu initially */
+    left: 0; /* Align to left */
+    background-color: var(--body-color); /* Set background color */
+    width: 100%; /* Full width */
+    padding-block: 4.5rem 3.5rem; /* Add padding */
+    box-shadow: 0 4px 16px hsla(353, 100%, 8%, 0.1); /* Add shadow effect */
+    transition: top 0.5s; /* Smooth transition when showing the menu */
+  }
+}
+
+.nav-list {
+  text-align: center; /* Center-align navigation items */
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Stack items vertically */
+  row-gap: 2rem; /* Add gap between rows */
+}
+
+.nav-link {
+  position: relative; /* Relative positioning for link */
+  color: var(--title-color); /* Set link color */
+  font-family: var(--second-font); /* Use second font */
+}
+
+.nav-link::after {
+  content: ""; /* Create empty pseudo-element */
+  width: 0%; /* Initially set width to 0 */
+  height: 3px; /* Set height of underline */
+  background-color: var(--first-color); /* Set underline color */
+  position: absolute; /* Position it absolutely */
+  left: 0; /* Align it to the left */
+  bottom: -0.5rem; /* Position it below the link */
+  transition: width 0.5s; /* Smooth transition for width */
+}
+
+.nav-link:hover::after {
+  width: 60%; /* Expand the underline on hover */
+}
+
+.nav-close {
+  position: absolute; /* Position close button absolutely */
+  top: 1rem; /* Align it to the top */
+  right: 1.5rem; /* Align it to the right */
+}
+
+/* Show menu when class is added */
+.show-menu {
+  top: 0; /* Make the menu visible by setting top to 0 */
+}
+
+/* Add shadow to the header when scrolling */
+.scroll-header {
+  box-shadow: 0 4px 16px hsla(353, 100%, 8%, 0.2); /* Add box-shadow to header */
+}
+
+/* Active link style */
+.active-link::after {
+  width: 60%; /* Make the underline 60% width when the link is active */
+}
+
+/*=============== HOME ===============*/
+.home-container {
+  padding-block: 2rem 3rem; /* Set padding for home section */
+  row-gap: 7rem; /* Set gap between rows */
+}
+
+.home-data {
+  position: relative; /* Set relative positioning for home data */
+  text-align: center; /* Center-align the text */
+}
+
+.home-title {
+  font-size: var(--biggest-font-size); /* Use biggest font size for title */
+}
+
+.home-description {
+  margin-block: 1rem 2rem; /* Add top and bottom margin */
+}
+
+.home-sticker-1,
+.home-sticker-2 {
+  width: 40px; /* Set width for stickers */
+  position: absolute; /* Position them absolutely */
+  opacity: 0.7; /* Set opacity */
+}
+
+.home-sticker-1 {
+  right: 0.75rem; /* Position sticker 1 to the right */
+  bottom: 2rem; /* Position sticker 1 at the bottom */
+  rotate: 30deg; /* Rotate sticker 1 */
+}
+
+.home-sticker-2 {
+  left: 2.5rem; /* Position sticker 2 to the left */
+  bottom: -4.5rem; /* Position sticker 2 at the bottom */
+}
+
+.home-images {
+  position: relative; /* Set relative positioning for images */
+  display: grid; /* Use grid layout */
+  justify-items: center; /* Center-align images */
+  justify-self: center; /* Center the images */
+}
+
+.home-ingredients {
+  width: 60px; /* Set width for ingredients */
+  filter: var(--shadow-small-img); /* Apply shadow effect */
+  position: absolute; /* Position them absolutely */
+  z-index: 2; /* Set stacking order */
+}
+
+.home-board,
+.home-pizza {
+  filter: var(--shadow-big-img); /* Apply bigger shadow effect */
+}
+
+.home-pizza {
+  width: 300px; /* Set width for pizza */
+  z-index: 2; /* Set stacking order */
+}
+
+.home-board {
+  width: 300px; /* Set width for pizza board */
+  position: absolute; /* Position pizza board absolutely */
+  bottom: -0.5rem; /* Align it at the bottom */
+  left: -0.15rem; /* Align it to the left */
+}
+
+.home-leaf-1 {
+  top: -1rem; /* Position first leaf at the top */
+}
+
+.home-pepperoni {
+  right: -0.5rem; /* Position pepperoni at the right */
+  top: 2rem; /* Position pepperoni at the top */
+}
+
+.home-mushroom {
+  right: -0.5rem; /* Position mushroom at the right */
+  bottom: 2rem; /* Position mushroom at the bottom */
+}
+
+.home-olive {
+  bottom: -1rem; /* Position olive at the bottom */
+}
+
+.home-leaf-2 {
+  left: -0.5rem; /* Position second leaf at the left */
+  bottom: 2rem; /* Position second leaf at the bottom */
+}
+
+.home-tomato {
+  left: -0.5rem; /* Position tomato at the left */
+  top: 2rem; /* Position tomato at the top */
+}
+
+/*=============== BUTTON STYLES ===============*/
+/* Styles for button elements */
+.button {
+  display: inline-flex; /* Flexbox layout for the button, allowing items inside to align easily */
+  justify-content: center; /* Centers button content horizontally */
+  background-color: var(
+    --first-color
+  ); /* Sets the background color to the primary color defined in variables */
+  color: var(--white-color); /* Sets the text color to white */
+  padding: 1rem 1.5rem; /* Adds padding inside the button */
+  font-weight: var(
+    --font-semi-bold
+  ); /* Sets font weight to semi-bold from the variables */
+  border-radius: 5rem; /* Rounds the corners with a large radius */
+  box-shadow: 0 8px 24px hsla(353, 100%, 40%, 0.4); /* Adds a shadow effect to the button */
+  cursor: pointer; /* Makes the button clickable (pointer cursor on hover) */
+  transition: background-color 0.3s; /* Smooth transition effect for background-color when hovering */
+}
+
+/* Hover effect for buttons */
+.button:hover {
+  background-color: var(
+    --first-color-alt
+  ); /* Changes the background color to an alternate color on hover */
+}
+
+/*=============== ABOUT SECTION ===============*/
+/* Styles for About section */
+.about {
+  background-color: var(
+    --container-color
+  ); /* Sets background to a light container color */
+}
+
+.about-container {
+  padding-bottom: 2rem; /* Adds space below the container */
+  row-gap: 2rem; /* Sets a gap between rows */
+}
+
+.about-data {
+  position: relative; /* Allows positioning of absolute elements inside */
+  text-align: center; /* Centers the text */
+}
+
+.about-title {
+  margin-bottom: 1rem; /* Adds space below the title */
+}
+
+.about-description {
+  margin-bottom: 2rem; /* Adds space below the description */
+}
+
+.about-sticker {
+  width: 40px; /* Set width for the sticker image */
+  position: absolute; /* Positions the sticker relative to the parent */
+  right: 0; /* Aligns to the right */
+  bottom: 2rem; /* Adds space from the bottom */
+}
+
+.about-image {
+  width: 320px; /* Set the image width */
+  justify-self: center; /* Centers the image horizontally */
+  filter: var(--shadow-big-img); /* Applies a shadow filter to the image */
+}
+
+/*=============== POPULAR SECTION ===============*/
+/* Styles for Popular dishes */
+.popular-container {
+  grid-template-columns: 100%; /* Full width container for single column */
+  row-gap: 3rem; /* Sets space between rows */
+  padding-bottom: 2rem; /* Adds space below the container */
+}
+
+.popular-title {
+  margin-bottom: 1rem; /* Adds space below the title */
+}
+
+.popular-description {
+  text-align: center; /* Centers the description text */
+}
+
+.popular-swiper {
+  position: relative; /* Sets the container as relative for positioning elements */
+}
+
+.popular-dish {
+  width: 220px; /* Sets the width of each dish */
+  filter: var(--shadow-big-img); /* Applies a big shadow filter */
+  position: absolute; /* Positions the dish image absolutely */
+  inset: 0; /* Adjusts the element from all sides */
+  top: -0.85rem; /* Moves the dish upwards */
+  margin-inline: auto; /* Centers the dish horizontally */
+}
+
+.popular-card,
+.popular-img {
+  width: 200px; /* Set width for card and image */
+}
+
+.popular-img {
+  transform: scale(0.8) rotate(-90deg); /* Shrinks and rotates the image */
+  transition: transform 0.5s; /* Smooth transition on transform property */
+}
+
+.popular-card-title {
+  font-size: var(--h3-font-size); /* Font size from variables */
+  color: var(--first-color); /* Color of the title */
+  margin-top: 2rem; /* Adds space above the title */
+  text-align: center; /* Centers the title text */
+  opacity: 0; /* Initially hides the title */
+  transition: opacity 0.5s; /* Smooth opacity transition */
+}
+
+/* Swiper class styles */
+.swiper {
+  margin-inline: initial; /* Removes margin from the sides */
+  overflow: visible; /* Makes sure content overflows when necessary */
+}
+
+/* Active swiper items */
+:is(.swiper-slide-active, .swiper-slide-duplicate-active) .popular-img {
+  transform: scale(1) rotate(0); /* Resets transform for active images */
+}
+
+:is(.swiper-slide-active, .swiper-slide-duplicate-active) .popular-card-title {
+  opacity: 1; /* Makes the title visible when active */
+}
+
+/*=============== RECIPE SECTION ===============*/
+/* Styles for Recipe section */
+.recipe {
+  background-color: var(
+    --container-color
+  ); /* Sets a container color background */
+}
+
+.recipe-container {
+  padding-bottom: 2rem; /* Adds space below the container */
+  row-gap: 2rem; /* Sets space between rows */
+}
+
+.recipe-image {
+  width: 60px; /* Sets the image width */
+  filter: var(--shadow-small-img); /* Applies a small shadow filter */
+}
+
+.recipe-name {
+  font-size: var(--normal-font-size); /* Normal font size */
+  margin-bottom: 0.25rem; /* Adds space below the name */
+}
+
+.recipe-description {
+  font-size: var(--small-font-size); /* Smaller font size for the description */
+}
+
+.recipe-ingredient {
+  display: flex; /* Uses flexbox to align ingredients */
+  align-items: center; /* Aligns ingredients vertically */
+  column-gap: 0.75rem; /* Adds space between ingredients */
+}
+
+.recipe-img {
+  width: 320px; /* Sets the image width */
+  justify-self: center; /* Centers the image horizontally */
+  filter: var(--shadow-big-img); /* Applies a big shadow filter */
+}
+
+/*=============== PRODUCTS SECTION ===============*/
+/* Styles for Products section */
+.products-container {
+  grid-template-columns: repeat(2, 1fr); /* Creates a two-column layout */
+  gap: 5rem 1.5rem; /* Defines a gap between columns and rows */
+  padding-top: 3.5rem; /* Adds space at the top */
+}
+
+.products-card {
+  position: relative; /* Enables absolute positioning inside */
+  background-color: var(
+    --container-color
+  ); /* Sets a container color background */
+  padding: 5rem 0.75rem 1.25rem 0.75rem; /* Adds padding inside the card */
+  border-radius: 1.5rem; /* Rounds the corners */
+  box-shadow: 0 8px 24px hsla(353, 100%, 40%, 0.1); /* Adds a shadow effect */
+}
+
+.products-img {
+  width: 120px; /* Sets image width */
+  position: absolute; /* Positions the image absolutely */
+  top: -3.5rem; /* Moves the image up */
+  left: 0;
+  right: 0;
+  margin: 0 auto; /* Centers the image horizontally */
+  filter: var(--shadow-small-img); /* Applies a small shadow filter */
+  transition: transform 0.3s; /* Transition on transform property */
+}
+
+.products-name {
+  font-size: var(--h3-font-size); /* Sets the product name font size */
+  margin-bottom: 0.5rem; /* Adds space below the name */
+}
+
+.products-price {
+  font-size: var(--h1-font-size); /* Sets a larger font for the price */
+  font-family: var(--second-font); /* Uses the second font for price */
+  line-height: 120%; /* Adjusts line height */
+  color: var(--first-color); /* Sets the color to primary color */
+}
+
+.products-btn {
+  position: absolute; /* Positions the button inside the card */
+  right: 0.75rem; /* Aligns the button to the right */
+  bottom: 1.25rem; /* Aligns the button to the bottom */
+  background-color: var(--first-color); /* Button background color */
+  color: var(--white-color); /* Button text color */
+  padding: 4px; /* Adds padding inside the button */
+  border-radius: 0.5rem; /* Rounds the button corners */
+  font-size: 1.5rem; /* Font size for the button text */
+  display: inline-flex; /* Displays the button as inline-flex */
+  box-shadow: 0 4px 16px hsla(353, 100%, 40%, 0.4); /* Adds shadow effect */
+  transition: background-color 0.3s; /* Smooth transition effect for background color */
+  cursor: pointer; /* Shows pointer cursor when hovering */
+}
+
+.products-btn:hover {
+  background-color: var(
+    --first-color-alt
+  ); /* Changes background color on hover */
+}
+
+.products-card:hover .products-img {
+  transform: translateY(
+    -0.5rem
+  ); /* Moves the image up slightly when hovering */
+}
+
+/*=============== CONTACT SECTION ===============*/
+/* Styles for Contact section */
+.contact-container {
+  position: relative; /* Allows positioning of elements inside */
+  background-color: var(--first-color-dark); /* Dark background color */
+  padding-top: 3.5rem; /* Adds space at the top */
+  border-radius: 3rem; /* Rounds the container corners */
+  overflow: hidden; /* Prevents overflow */
+  row-gap: 3rem; /* Sets space between rows */
+}
+
+.contact-title,
+.contact-info-title,
+.contact-address {
+  color: var(--white-color); /* Sets text color to white */
+}
+
+.contact-info {
+  text-align: center; /* Centers the information */
+  row-gap: 2rem; /* Sets space between the items */
+}
+
+.contact-info-title {
+  margin-bottom: 1rem; /* Adds space below the title */
+}
+
+.contact-social {
+  display: flex; /* Uses flexbox for social links */
+  justify-content: center; /* Centers the social links horizontally */
+  column-gap: 1rem; /* Adds space between the social links */
+}
+
+.contact-social-link {
+  font-size: 1.5rem; /* Sets the font size */
+  color: var(--first-color); /* Sets the color to the primary color */
+  transition: transform 0.3s; /* Adds smooth transition for transformation */
+}
+
+.contact-social-link:hover {
+  transform: translateY(
+    -0.25rem
+  ); /* Slightly moves the social links upwards on hover */
+}
+
+.contact-address {
+  font-style: normal; /* Resets any italicization */
+}
+
+.contact-map {
+  color: var(--first-color); /* Sets map text color */
+  display: inline-flex; /* Aligns map elements horizontally */
+  align-items: center; /* Aligns map text and icon vertically */
+  column-gap: 0.5rem; /* Adds space between text and icon */
+  margin-top: 0.5rem; /* Adds space above the map section */
+  font-size: 1rem; /* Sets font size */
+}
+
+.contact-map span {
+  font-size: var(--small-font-size); /* Smaller font for the span element */
+  font-weight: var(--font-semi-bold); /* Semi-bold text */
+}
+
+.contact-image {
+  justify-self: center; /* Centers the image horizontally */
+}
+
+.contact-img {
+  width: 300px; /* Sets the image width */
+}
+
+.contact-sticker-1,
+.contact-sticker-2,
+.contact-sticker-3 {
+  width: 40px; /* Sets the size for stickers */
+  position: absolute; /* Positions the stickers absolutely */
+  opacity: 0.7; /* Sets opacity for a semi-transparent effect */
+}
+
+.contact-sticker-1 {
+  top: 8rem; /* Positions the first sticker */
+  left: 1.5rem; /* Sets the center of the sticker */
+}
+
+/* Sticker 2 positioned 1.5rem from the right and 23rem from the bottom */
+.contact-sticker-2 {
+  right: 1.5rem; /* Positions the sticker from the right edge of its container */
+  bottom: 23rem; /* Positions the sticker from the bottom of the container */
+}
+
+/* Sticker 3 positioned 2rem from the left and 6rem from the bottom */
+.contact-sticker-3 {
+  left: 2rem; /* Positions the sticker from the left edge of its container */
+  bottom: 6rem; /* Positions the sticker from the bottom of the container */
+}
+
+/*=============== FOOTER ===============*/
+
+/* Footer section styling - adds top and bottom padding */
+.footer {
+  padding-block: 4rem 2rem; /* 4rem of padding on the top and 2rem on the bottom */
+}
+
+/* Container and content in the footer with a gap between rows */
+.footer-container,
+.footer-content {
+  row-gap: 3rem; /* Adds space of 3rem between rows of elements in the container */
+}
+
+/* Styling for the footer logo */
+.footer-logo {
+  justify-self: center; /* Centers the logo within its grid area */
+  font-size: var(--h1-font-size); /* Font size set to h1 font size */
+  font-family: var(--second-font); /* Uses the secondary font family */
+  color: var(
+    --first-color
+  ); /* Sets the logo color to the first color variable */
+}
+
+/* Title in the footer, adds margin at the bottom */
+.footer-title {
+  font-size: var(--h3-font-size); /* Font size set to h3 font size */
+  margin-bottom: 1rem; /* Adds 1rem margin at the bottom */
+}
+
+/* Styling for social, payment and footer form sections - display elements in a row with gaps */
+.social,
+.footer-pay,
+.footer-form {
+  display: flex; /* Flexbox layout to align items in a row */
+  column-gap: 1rem; /* Adds a gap of 1rem between the items */
+}
+
+/* Social media links inside footer */
+.social-link {
+  font-size: 1.5rem; /* Font size set to 1.5rem for the social media links */
+  color: var(--first-color); /* Sets color of social links to first color */
+  transition: transform 0.3s; /* Adds smooth transform effect on hover */
+}
+
+/* Hover effect on social media links: move slightly upwards */
+.social-link:hover {
+  transform: translateY(-0.25rem); /* Moves the link 0.25rem upwards on hover */
+}
+
+/* Styling for payment icons, width set to 30px */
+.footer-pay img {
+  width: 30px; /* Set the width of payment icons */
+  filter: var(--shadow-small-img); /* Adds small shadow effect to the icons */
+}
+
+/* Footer form container styling */
+.footer-form {
+  padding: 0.5rem; /* Adds 0.5rem padding inside the form */
+  background-color: var(
+    --container-color
+  ); /* Background color set to container color */
+  box-shadow: 0 4px 16px hsla(353, 100%, 8%, 0.1); /* Adds shadow around the form */
+  border-radius: 4rem; /* Rounds the corners of the form container */
+}
+
+/* Input field styling inside footer form */
+.footer-input {
+  width: 100%; /* Makes the input field take full width */
+  background: transparent; /* Sets the background of input field to transparent */
+  padding-left: 0.75rem; /* Adds padding to the left inside the input field */
+  color: var(
+    --title-color
+  ); /* Sets the text color to the title color variable */
+  font-weight: var(
+    --font-semi-bold
+  ); /* Uses semi-bold font weight for the text */
+}
+
+/* Placeholder text color styling inside footer input */
+.footer-input::placeholder {
+  color: var(--text-color); /* Sets the color of placeholder text */
+}
+
+/* Footer button styling */
+.footer-btn {
+  padding-block: 0.75rem; /* Adds 0.75rem padding at the top and bottom of the button */
+  cursor: pointer; /* Changes cursor to pointer on hover to indicate clickable element */
+}
+
+/* Policy section in the footer, adds gap between the items */
+.footer-policy {
+  display: flex; /* Flexbox layout for the footer policy section */
+  column-gap: 2rem; /* Adds 2rem gap between items in the policy section */
+  justify-content: center; /* Centers the policy items horizontally */
+  margin-top: 5rem; /* Adds 5rem space above the policy section */
+}
+
+/* Footer policy link styling */
+.footer-link {
+  color: var(--text-color); /* Sets text color to the text color variable */
+  font-size: var(--small-font-size); /* Font size set to small font size */
+}
+
+/* Footer copyright section, centers the text and sets the font size */
+.footer-copyright {
+  display: block; /* Makes the copyright section a block element */
+  margin-top: 2rem; /* Adds 2rem space above the copyright section */
+  text-align: center; /* Centers the text inside the copyright section */
+  font-size: var(--small-font-size); /* Sets font size to small */
+}
+
+/*=============== SCROLL BAR ===============*/
+
+/* Styling for custom scrollbar */
+::-webkit-scrollbar {
+  width: 0.6rem; /* Sets the width of the scrollbar */
+  background-color: hsl(
+    24,
+    32%,
+    75%
+  ); /* Sets the background color of the scrollbar */
+}
+
+/* Styling for the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background-color: hsl(
+    24,
+    32%,
+    65%
+  ); /* Sets the color of the scrollbar thumb */
+  border-radius: 2rem; /* Rounds the corners of the scrollbar thumb */
+}
+
+/* Hover effect on the scrollbar thumb: changes the color when hovered */
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(
+    24,
+    32%,
+    55%
+  ); /* Darkens the scrollbar thumb color on hover */
+}
+
+/*=============== SCROLL UP ===============*/
+
+/* Styling for the "scroll up" button */
+.scrollup {
+  position: fixed; /* Fixes the position of the scroll up button */
+  right: 1rem; /* Positions the button 1rem from the right edge */
+  bottom: -50%; /* Initially positions the button off-screen at the bottom */
+  background-color: var(
+    --body-color
+  ); /* Sets the background color to body color */
+  color: var(--title-color); /* Sets the text color to the title color */
+  display: inline-flex; /* Uses inline-flex for flexible layout */
+  padding: 6px; /* Adds padding inside the button */
+  font-size: 1.25rem; /* Sets font size to 1.25rem */
+  border-radius: 0.5rem; /* Rounds the corners of the button */
+  z-index: var(
+    --z-tooltip
+  ); /* Ensures the button stays on top of other elements */
+  cursor: pointer; /* Changes the cursor to pointer on hover */
+  transition: bottom 0.5s, transform 0.5s; /* Adds transition effect for positioning and transform */
+  box-shadow: 0 4px 16px hsla(353, 100%, 8%, 0.2); /* Adds shadow around the button */
+}
+
+/* Hover effect for the scroll up button */
+.scrollup:hover {
+  background-color: var(
+    --title-color
+  ); /* Changes background color to title color on hover */
+  color: var(--white-color); /* Changes text color to white on hover */
+  transform: translateY(
+    -0.5rem
+  ); /* Moves the button slightly upwards on hover */
+}
+
+/* Scroll up button visibility when it's shown */
+.show-scroll {
+  bottom: 3rem; /* Positions the scroll up button 3rem from the bottom when visible */
+}
+
+/*=============== BREAKPOINTS ===============*/
+
+/* For small devices (max-width: 320px) */
+@media screen and (max-width: 320px) {
+  /* Container adjusts its margin for small screens */
+  .container {
+    margin-inline: 1rem; /* Adds 1rem margin on the left and right */
+  }
+
+  /* Products container adjusts grid layout for small screens */
+  .products-container {
+    grid-template-columns: 150px; /* Makes the grid have 1 column of 150px */
+    justify-content: center; /* Centers the grid horizontally */
+  }
+
+  /* Footer form adjusts layout for small screens */
+  .footer-form {
+    background-color: transparent; /* Makes the form background transparent */
+    box-shadow: none; /* Removes shadow effect */
+    flex-direction: column; /* Stacks form elements vertically */
+    row-gap: 1rem; /* Adds 1rem gap between rows */
+    padding: 0; /* Removes padding */
+  }
+
+  /* Footer input adjusts background and shadow for small screens */
+  .footer-input {
+    background-color: var(
+      --container-color
+    ); /* Sets background to container color */
+    box-shadow: 0 4px 16px hsla(353, 100%, 8%, 0.1); /* Adds small shadow around input */
+    padding: 0.75rem 1rem; /* Adds padding inside the input */
+    border-radius: 4rem; /* Rounds the corners of the input */
+  }
+}
+
+/* For medium devices (min-width: 576px) */
+@media screen and (min-width: 576px) {
+  /* Adjusts grid layout for medium devices */
+  .home-container,
+  .about-container,
+  .popular-container,
+  .recipe-container {
+    grid-template-columns: 380px; /* Makes grid have 1 column of 380px */
+    justify-content: center; /* Centers content horizontally */
+  }
+
+  /* Products container adjusts grid layout for medium screens */
+  .products-container {
+    grid-template-columns: repeat(
+      2,
+      160px
+    ); /* Creates 2 columns, each 160px wide */
+    justify-content: center; /* Centers the grid horizontally */
+  }
+
+  /* Contact container adjusts layout for medium screens */
+  .contact-container {
+    width: 450px; /* Sets width of the container to 450px */
+    margin-inline: auto; /* Centers the container horizontally */
+  }
+
+  /* Footer form width adjusts for medium screens */
+  .footer-form {
+    width: 360px; /* Sets the width of the footer form */
+  }
+}
+
+/*=============== MEDIA QUERY FOR DEVICES WITH MINIMUM WIDTH OF 768px ===============*/
+
+@media screen and (min-width: 768px) {
+  /* Popular swiper section: sets the width, hides the horizontal overflow, and centers it */
+  .popular-swiper {
+    width: 600px; /* Sets the width of the popular swiper section */
+    overflow-x: clip; /* Prevents horizontal scrolling if content overflows */
+    justify-self: center; /* Centers the swiper horizontally within its container */
+  }
+
+  /* Products container: defines grid layout with 3 columns, each 160px wide */
+  .products-container {
+    grid-template-columns: repeat(
+      3,
+      160px
+    ); /* Creates 3 equal columns with 160px width */
+    /* justify-content: center;  Removed, no longer needed as grid layout is used */
+  }
+
+  /* Footer content: sets grid layout with 2 equal columns */
+  .footer-content {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Creates 2 equal columns in the footer */
+    justify-items: center; /* Centers items inside each grid cell */
+  }
+
+  /* Footer content 3rd child: spans both columns */
+  .footer-content div:nth-child(3) {
+    grid-column: 1 / 3; /* Makes the 3rd item span across the first and second columns */
+  }
+
+  /* Footer title: centers the text */
+  .footer-title {
+    text-align: center; /* Centers the title text horizontally */
+  }
+
+  /* Social and footer payment sections: sets gap between the items */
+  .social,
+  .footer-pay {
+    column-gap: 1.5rem; /* Adds 1.5rem gap between the items in social and footer-pay sections */
+  }
+}
+
+/*=============== MEDIA QUERY FOR LARGE DEVICES (MINIMUM WIDTH OF 1150px) ===============*/
+
+@media screen and (min-width: 1150px) {
+  /* Main container: centers the container horizontally */
+  .container {
+    margin-inline: auto; /* Centers the container by adding automatic left and right margins */
+  }
+
+  /* Section: adds more vertical padding (7rem top and 2rem bottom) */
+  .section {
+    padding-block: 7rem 2rem; /* Adds padding of 7rem at the top and 2rem at the bottom */
+  }
+
+  /* Section title: adds bottom margin */
+  .section-title {
+    margin-bottom: 4rem; /* Adds 4rem bottom margin to the section title */
+  }
+
+  /* Navigation: adjusts height */
+  .nav {
+    height: calc(
+      var(--header-height) + 2rem
+    ); /* Sets navigation height based on the header height plus an additional 2rem */
+  }
+
+  /* Navigation close and toggle buttons: hide them */
+  .nav-close,
+  .nav-toggle {
+    display: none; /* Hides the close and toggle buttons */
+  }
+
+  /* Navigation list: sets horizontal layout with large column gap */
+  .nav-list {
+    flex-direction: row; /* Makes navigation items appear horizontally */
+    column-gap: 4rem; /* Adds 4rem gap between navigation items */
+  }
+
+  /* Home container: defines 2-column grid with custom column widths */
+  .home-container {
+    grid-template-columns: 515px 555px; /* Sets 2 columns with widths 515px and 555px respectively */
+    column-gap: 3rem; /* Adds 3rem gap between columns */
+    align-items: start; /* Aligns items to the start of the grid container */
+    padding-block: 10rem 4rem; /* Adds 10rem top and 4rem bottom padding */
+  }
+
+  /* Home data: aligns text to initial position and adds top margin */
+  .home-data {
+    text-align: initial; /* Resets the text alignment */
+    margin-top: 2rem; /* Adds 2rem top margin */
+  }
+
+  /* Home description: adds bottom margin and adjusts right padding */
+  .home-description {
+    margin-bottom: 3.5rem; /* Adds 3.5rem bottom margin */
+    padding-right: 6rem; /* Adds 6rem right padding */
+  }
+
+  /* Home stickers: adjusts width */
+  .home-sticker-1,
+  .home-sticker-2 {
+    width: 50px; /* Sets both home stickers to 50px width */
+  }
+
+  /* Home sticker 1 positioning */
+  .home-sticker-1 {
+    right: 3rem; /* Positions sticker 1 3rem from the right */
+    top: 1rem; /* Positions sticker 1 1rem from the top */
+    bottom: 0; /* Keeps sticker 1 at the bottom edge of its container */
+  }
+
+  /* Home sticker 2 positioning */
+  .home-sticker-2 {
+    left: 16rem; /* Positions sticker 2 16rem from the left */
+    bottom: 3rem; /* Positions sticker 2 3rem from the bottom */
+  }
+
+  /* Home board and pizza: adjusts width */
+  .home-board,
+  .home-pizza {
+    width: 520px; /* Sets both home board and pizza to 520px width */
+  }
+
+  /* Home board positioning */
+  .home-board {
+    bottom: -1rem; /* Positions the home board 1rem below the normal position */
+  }
+
+  /* Home ingredients: sets width */
+  .home-ingredients {
+    width: 100px; /* Sets the home ingredients width to 100px */
+  }
+
+  /* Home leaf 1 positioning */
+  .home-leaf-1 {
+    top: -2rem; /* Positions leaf 1 2rem above its normal position */
+  }
+
+  /* Home pepperoni positioning */
+  .home-pepperoni {
+    right: -1rem; /* Positions pepperoni 1rem from the right */
+    top: 3.5rem; /* Positions pepperoni 3.5rem from the top */
+  }
+
+  /* Home mushroom positioning */
+  .home-mushroom {
+    right: -1rem; /* Positions mushroom 1rem from the right */
+    bottom: 3.5rem; /* Positions mushroom 3.5rem from the bottom */
+  }
+
+  /* Home olive positioning */
+  .home-olive {
+    bottom: -2rem; /* Positions olive 2rem below its normal position */
+  }
+
+  /* Home leaf 2 positioning */
+  .home-leaf-2 {
+    left: -1rem; /* Positions leaf 2 1rem from the left */
+    bottom: 3.5rem; /* Positions leaf 2 3.5rem from the bottom */
+  }
+
+  /* Home tomato positioning */
+  .home-tomato {
+    left: -1rem; /* Positions tomato 1rem from the left */
+    top: 3.5rem; /* Positions tomato 3.5rem from the top */
+  }
+
+  /* About container: defines grid layout with custom column widths */
+  .about-container {
+    grid-template-columns: 450px 440px; /* Creates 2 columns with widths 450px and 440px */
+    align-items: center; /* Vertically aligns items to the center */
+    column-gap: 6rem; /* Adds 6rem gap between columns */
+  }
+
+  /* About image: changes the order to show image first and sets width */
+  .about-image {
+    order: -1; /* Reverses the order to place image before the text */
+    width: 450px; /* Sets the width of the about image to 450px */
+  }
+
+  /* About data: resets text alignment */
+  .about-data {
+    text-align: initial; /* Resets text alignment to default */
+  }
+
+  /* About title: resets text alignment and adds bottom margin */
+  .about-title {
+    margin-bottom: 1.5rem; /* Adds 1.5rem bottom margin */
+    text-align: initial; /* Resets text alignment */
+  }
+
+  /* About description: adds bottom margin */
+  .about-description {
+    margin-bottom: 3.5rem; /* Adds 3.5rem bottom margin */
+  }
+
+  /* About sticker: positions it at 6rem from the right and 4rem from the bottom */
+  .about-sticker {
+    width: 50px; /* Sets sticker width to 50px */
+    right: 6rem; /* Positions sticker 6rem from the right */
+    bottom: 4rem; /* Positions sticker 4rem from the bottom */
+  }
+
+  /* Popular container: defines 1-column layout */
+  .popular-container {
+    grid-template-columns: 470px; /* Creates a single column with 470px width */
+    row-gap: 5rem; /* Adds 5rem gap between rows */
+    padding-bottom: 3rem; /* Adds 3rem bottom padding */
+  }
+
+  /* Popular title: adds bottom margin */
+  .popular-title {
+    margin-bottom: 1.5rem; /* Adds 1.5rem bottom margin */
+  }
+
+  /* Popular swiper: adjusts width */
+  .popular-swiper {
+    width: 1000px; /* Sets the width of the popular swiper */
+  }
+
+  /* Popular card and image: adjusts width */
+  .popular-card,
+  .popular-img {
+    width: 350px; /* Sets the width of popular cards and images to 350px */
+  }
+
+  /* Popular dish positioning */
+  .popular-dish {
+    width: 390px; /* Sets the width of the popular dish image */
+    top: -1.5rem; /* Positions dish image 1.5rem above its normal position */
+  }
+
+  /* Popular card title: adds margin at the top */
+  .popular-card-title {
+    margin-top: 3rem; /* Adds 3rem top margin to the title */
+    font-size: var(--h2-font-size); /* Sets font size based on a CSS variable */
+  }
+
+  /* Recipe container: defines grid layout */
+  .recipe-container {
+    grid-template-columns: 390px 550px; /* Creates a 2-column layout with column sizes 390px and 550px */
+    column-gap: 6rem; /* Adds 6rem gap between columns */
+    align-items: center; /* Vertically aligns items to the center */
+    padding-bottom: 3rem; /* Adds 3rem bottom padding */
+  }
+
+  /* Recipe ingredient section: adds gap between columns */
+  .recipe-ingredient {
+    column-gap: 1.5rem; /* Adds 1.5rem gap between columns */
+  }
+
+  /* Recipe image: sets width */
+  .recipe-image {
+    width: 80px; /* Sets recipe image width to 80px */
+  }
+
+  /* Recipe name: sets font size */
+  .recipe-name {
+    font-size: var(--h3-font-size); /* Sets the font size for the recipe name */
+  }
+
+  /* Recipe description: sets font size */
+  .recipe-description {
+    font-size: var(
+      --normal-font-size
+    ); /* Sets the font size for the recipe description */
+  }
+
+  /* Recipe image size */
+  .recipe-img {
+    width: 550px; /* Sets recipe image width to 550px */
+  }
+
+  /* Products container: creates a 3-column layout with custom gap */
+  .products-container {
+    grid-template-columns: repeat(
+      3,
+      250px
+    ); /* Creates 3 equal columns with 250px width */
+    gap: 7.5rem 4rem; /* Adds 7.5rem horizontal gap and 4rem vertical gap between items */
+  }
+
+  /* Product card: adds padding and rounded corners */
+  .products-card {
+    padding: 10rem 1.5rem 1.5rem; /* Adds padding to the product card */
+    border-radius: 2rem; /* Rounds the corners of the card */
+  }
+
+  /* Product image: adjusts size and positioning */
+  .products-img {
+    width: 200px; /* Sets the width of the product image to 200px */
+    top: -4rem; /* Moves the product image 4rem above its normal position */
+  }
+
+  /* Product name: sets font size */
+  .products-name {
+    font-size: var(
+      --h2-font-size
+    ); /* Sets the font size for the product name */
+  }
+
+  /* Product button: adjusts position and padding */
+  .products-btn {
+    right: 1.5rem; /* Positions button 1.5rem from the right */
+    bottom: 1.5rem; /* Positions button 1.5rem from the bottom */
+    padding: 6px; /* Adds padding inside the button */
+  }
+
+  /* Contact container: sets a 2-column grid */
+  .contact-container {
+    width: initial; /* Resets the container width */
+    grid-template-columns: 370px 350px; /* Defines 2 columns with 370px and 350px widths */
+    justify-content: center; /* Centers the content within the grid */
+    column-gap: 6rem; /* Adds 6rem gap between columns */
+    border-radius: 4rem; /* Rounds the corners of the contact container */
+  }
+
+  /* Contact image: sets size */
+  .contact-img {
+    width: 350px; /* Sets the width of the contact image to 350px */
+  }
+
+  /* Contact image order: makes it appear first */
+  .contact-image {
+    order: -1; /* Changes the order so the image appears before other items */
+  }
+
+  /* Contact title and info: resets text alignment */
+  .contact-info,
+  .contact-title {
+    text-align: initial; /* Resets the text alignment */
+  }
+
+  /* Contact data: adds top margin */
+  .contact-data {
+    margin-top: 2rem; /* Adds 2rem top margin to the contact data */
+  }
+
+  /* Contact form: adjusts width and positioning */
+  .contact-info {
+    /* Defines a 2-column grid layout for the .contact-info container */
+    grid-template-columns: repeat(2, max-content);
+  }
+
+  /* Contact social media section: resets alignment */
+  .contact-social {
+    justify-content: initial; /* Resets the justify-content alignment */
+  }
+
+  /* Contact stickers: adjusts width and positioning */
+  .contact-sticker-1,
+  .contact-sticker-2,
+  .contact-sticker-3 {
+    width: 50px; /* Sets each sticker width to 50px */
+  }
+
+  /* Sticker 1 positioning */
+  .contact-sticker-1 {
+    top: 4rem; /* Positions sticker 1 4rem from the top */
+  }
+
+  /* Sticker 2 positioning */
+  .contact-sticker-2 {
+    right: 4rem; /* Positions sticker 2 4rem from the right */
+    top: 8rem; /* Positions sticker 2 8rem from the top */
+    bottom: 0; /* Keeps sticker 2 at the bottom edge of its container */
+  }
+
+  /* Sticker 3 positioning */
+  .contact-sticker-3 {
+    left: 10rem; /* Positions sticker 3 10rem from the left */
+    bottom: 4rem; /* Positions sticker 3 4rem from the bottom */
+  }
+
+  /* Footer: adds bottom padding */
+  .footer {
+    padding-bottom: 3rem; /* Adds 3rem bottom padding */
+  }
+
+  /* Footer content: defines 3-column layout */
+  .footer-content {
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); /* Creates 3 equal columns in the footer */
+  }
+
+  /* Footer content 3rd child: resets grid column position */
+  .footer-content div:nth-child(3) {
+    grid-column: initial; /* Resets the 3rd item's position */
+  }
+
+  /* Footer content 2nd child: reorders to appear second and aligns to the end */
+  .footer-content div:nth-child(2) {
+    order: 1; /* Moves this item to the second position */
+    justify-self: end; /* Aligns the item to the end of the grid */
+  }
+
+  /* Footer content 1st child: aligns to the start */
+  .footer-content div:nth-child(1) {
+    justify-self: start; /* Aligns this item to the start of the grid */
+  }
+
+  /* Scroll up button: positions it at the right side */
+  .scrollup {
+    right: 3rem; /* Positions the scroll-up button 3rem from the right */
+  }
+}
