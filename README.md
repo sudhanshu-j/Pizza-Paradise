@@ -154,7 +154,7 @@ Then visit `http://localhost:8000` to view the website in action.
 
 ## 🚀 Live Demo
 
-You can try out the live demo of **Pizza Paradise** here: [Live Demo](#) 🌐.
+You can try out the live demo of **Pizza Paradise** here: [Live Demo](https://pizza-paradisee.netlify.app/) 🌐.
 
 ---
 
